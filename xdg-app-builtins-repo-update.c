@@ -130,9 +130,11 @@ xdg_app_builtin_repo_update (int argc, char **argv, GCancellable *cancellable, G
   if (!ostree_repo_open (repo, cancellable, error))
     goto out;
 
+  g_debug ("Updating OSTree summary for repository");
   if (!ostree_repo_regenerate_summary (repo, NULL, cancellable, error))
     goto out;
 
+  g_debug ("Creating appstream data for repository");
   if (!ostree_repo_create_appstream (repo, cancellable, error))
     goto out;
 
